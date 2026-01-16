@@ -141,13 +141,13 @@
     .beat-card{
         display:flex;
         flex-direction:column;
-        gap:12px;
+        gap:18px;
         align-items:stretch;
         background: linear-gradient(180deg, var(--panel), rgba(12,18,20,0.95));
-        border-radius:14px;
-        padding:14px;
+        border-radius:16px;
+        padding:22px;
         box-shadow: var(--shadow);
-        border:1px solid rgba(255,255,255,0.02);
+        border:1px solid rgba(255,255,255,0.03);
         transition: transform .18s, box-shadow .18s;
         height:100%;
     }
@@ -171,46 +171,56 @@
         border:2px solid rgba(255,217,122,0.04);
     }
 
-    .beat-content{ flex:1; min-width:0; display:flex; flex-direction:column; }
-    .beat-content h3{ margin:0 0 6px 0; font-size:1.05rem; color:var(--text) }
-    .beat-info{ color:var(--muted); font-size:0.95rem; margin-bottom:6px }
+    .beat-content{ flex:1; min-width:0; display:flex; flex-direction:column; gap:4px; }
+    .beat-content h3{ margin:0 0 4px 0; font-size:1.1rem; color:var(--text); font-weight:600; }
+    .beat-info{ color:var(--muted); font-size:0.95rem; margin-bottom:2px; }
 
     .beat-slogan{ font-size:0.85rem; color:rgba(255,217,122,0.9); margin-top:4px; font-style:italic; }
 
-    .waveform{ margin-top:6px; width:100%; height:44px; border-radius:6px; overflow:hidden; background:linear-gradient(90deg, rgba(255,255,255,0.01), rgba(0,0,0,0.02)); }
+    .waveform{ margin-top:4px; width:100%; height:52px; border-radius:8px; overflow:hidden; background:linear-gradient(90deg, rgba(255,217,122,0.1), rgba(255,217,122,0.05)); border:1px solid rgba(255,217,122,0.12); }
 
-    .player-controls{ display:flex; align-items:center; gap:10px; margin-top:10px }
+    .player-controls{ display:flex; align-items:center; gap:14px; margin-top:6px; padding:14px; background:rgba(255,217,122,0.03); border-radius:11px; }
     .control-btn{
-        background: rgba(255,255,255,0.02);
-        border:none;
-        padding:8px;
-        width:42px;
-        height:42px;
+        background: linear-gradient(135deg, rgba(255,217,122,0.15), rgba(255,217,122,0.08));
+        border:1.5px solid rgba(255,217,122,0.25);
+        padding:11px;
+        width:48px;
+        height:48px;
         border-radius:10px;
         display:inline-flex;
         align-items:center;
         justify-content:center;
         cursor:pointer;
-        box-shadow: 0 6px 16px rgba(0,0,0,0.6);
-        transition: transform .12s, box-shadow .12s, background .12s;
+        box-shadow: 0 6px 18px rgba(255,217,122,0.18);
+        transition: transform .15s, box-shadow .15s, background .15s, border-color .15s;
+        color:var(--accent);
     }
     .control-btn:hover{
-        transform:translateY(-4px);
-        box-shadow: 0 14px 34px rgba(0,0,0,0.75);
-        background: rgba(255,217,122,0.05);
+        transform:translateY(-3px);
+        box-shadow: 0 10px 28px rgba(255,217,122,0.3);
+        background: linear-gradient(135deg, rgba(255,217,122,0.22), rgba(255,217,122,0.12));
+        border-color:rgba(255,217,122,0.35);
     }
 
     .control-label{ font-size:0.95rem; color:var(--muted); margin-left:8px; min-width:48px; text-align:left; }
 
     /* filters */
-    #beat-filters{ display:flex; gap:10px; margin-top:12px; width:100%; max-width:1100px; margin-left:auto; margin-right:auto; padding:6px; }
-    .filter-btn{ flex:1; display:inline-flex; align-items:center; justify-content:center; padding:10px 12px; background: rgba(255,255,255,0.02); border-radius:10px; color:var(--accent); font-weight:700; border:1px solid rgba(255,255,255,0.02); cursor:pointer; transition:transform .12s, box-shadow .12s, background .12s; text-transform:uppercase; letter-spacing:0.6px; }
-    .filter-btn[aria-pressed="true"]{ background: linear-gradient(90deg, rgba(255,217,122,0.14), rgba(255,217,122,0.06)); color:#071217; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transform:none; }
+    #beat-filters{ display:flex; gap:12px; margin-top:18px; width:100%; max-width:1100px; margin-left:auto; margin-right:auto; padding:12px; flex-wrap:wrap; justify-content:center; }
+    .filter-btn{ flex:1; min-width:100px; display:inline-flex; align-items:center; justify-content:center; padding:12px 16px; background: rgba(255,255,255,0.03); border-radius:10px; color:var(--accent); font-weight:700; border:1.5px solid rgba(255,217,122,0.15); cursor:pointer; transition:transform .15s, box-shadow .15s, background .15s, border-color .15s; text-transform:uppercase; letter-spacing:0.8px; font-size:0.9rem; box-shadow:0 4px 12px rgba(0,0,0,0.3); }
+    .filter-btn:hover{ transform:translateY(-2px); border-color:rgba(255,217,122,0.3); background:rgba(255,217,122,0.05); box-shadow:0 6px 18px rgba(255,217,122,0.15); }
+    .filter-btn[aria-pressed="true"]{ background: linear-gradient(135deg, rgba(255,217,122,0.18), rgba(255,217,122,0.08)); color:#071217; box-shadow: 0 8px 28px rgba(255,217,122,0.25); border-color:rgba(255,217,122,0.4); }
 
     /* purchase buttons */
-    .paypal-btn, .stripe-btn{ padding:8px 12px; border-radius:10px; font-weight:700; border:none; cursor:pointer; box-shadow: 0 6px 18px rgba(0,0,0,0.6); }
-    .paypal-btn{ background:linear-gradient(180deg,#ffd966,#ffc439); color:#111 }
-    .stripe-btn{ background:linear-gradient(90deg,#6c78ff,#4a57e6); color:#fff }
+    .paypal-btn, .stripe-btn, .license-btn{ padding:10px 14px; border-radius:10px; font-weight:700; border:none; cursor:pointer; box-shadow: 0 6px 18px rgba(0,0,0,0.6); transition:transform .15s, box-shadow .15s, opacity .15s; font-size:0.95rem; }
+    .paypal-btn{ background:linear-gradient(135deg,#ffd966,#ffc439); color:#111; }
+    .paypal-btn:hover{ transform:translateY(-2px); box-shadow:0 10px 28px rgba(255,217,122,0.3); }
+    .stripe-btn{ background:linear-gradient(135deg,#6c78ff,#4a57e6); color:#fff; }
+    .stripe-btn:hover{ transform:translateY(-2px); box-shadow:0 10px 28px rgba(106,120,255,0.3); }
+    .license-btn{ background:linear-gradient(135deg, rgba(255,217,122,0.15), rgba(255,217,122,0.08)); color:var(--accent); border:1.5px solid rgba(255,217,122,0.25); padding:9px 12px; }
+    .license-btn:hover{ transform:translateY(-2px); border-color:rgba(255,217,122,0.4); background:linear-gradient(135deg, rgba(255,217,122,0.22), rgba(255,217,122,0.12)); }
+
+    .card-footer{ display:flex; flex-direction:column; gap:14px; width:100%; }
+    .beat-actions{ display:flex; gap:10px; align-items:center; justify-content:flex-start; flex-wrap:wrap; }
 
     @media (max-width:640px){
         .beat-card .top{ flex-direction:column; align-items:center; text-align:center }
@@ -297,7 +307,7 @@
             </div>
 
             <div id="wave-b1" class="waveform"></div>
-            <audio id="audio-b1" src="Beats/b1.mp3"></audio>
+            <audio id="audio-b1" src="b1.mp3"></audio>
 
             <div class="card-footer">
                 <div class="player-controls">
@@ -326,7 +336,7 @@
             </div>
 
             <div id="wave-b2" class="waveform"></div>
-            <audio id="audio-b2" src="Beats/b2.mp3"></audio>
+            <audio id="audio-b2" src="b2.mp3"></audio>
 
             <div class="card-footer">
                 <div class="player-controls">
@@ -354,7 +364,7 @@
             </div>
 
             <div id="wave-b3" class="waveform"></div>
-            <audio id="audio-b3" src="Beats/b3.mp3"></audio>
+            <audio id="audio-b3" src="b3.mp3"></audio>
 
             <div class="card-footer">
                 <div class="player-controls">
@@ -382,7 +392,7 @@
             </div>
 
             <div id="wave-b4" class="waveform"></div>
-            <audio id="audio-b4" src="Beats/B4.mp3"></audio>
+            <audio id="audio-b4" src="b4.mp3"></audio>
 
             <div class="card-footer">
                 <div class="player-controls">
@@ -410,7 +420,7 @@
             </div>
 
             <div id="wave-b5" class="waveform"></div>
-            <audio id="audio-b5" src="Beats/b5.mp3"></audio>
+            <audio id="audio-b5" src="b5.mp3"></audio>
 
             <div class="card-footer">
                 <div class="player-controls">
@@ -438,7 +448,7 @@
             </div>
 
             <div id="wave-b6" class="waveform"></div>
-            <audio id="audio-b6" src="Beats/b6.mp3"></audio>
+            <audio id="audio-b6" src="b6.mp3"></audio>
 
             <div class="card-footer">
                 <div class="player-controls">
@@ -461,18 +471,20 @@
 <section id="showcase">
     <h2>Showcase</h2>
     <p style="color:var(--muted);max-width:900px;margin:0 auto 12px;font-size:1rem;">
-        Watch an Ableton tutorial and listen — embeds only, no links or extra text displayed here.
+        Click any of these and follow up!!! Social Media Reels and Posts of Tolorisebeatz, The Ghetto Sharp Rapper @South Coast Duban in Southern Africa.
     </p>
 
-    <div class="showcase-grid" style="display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start;margin-top:12px;">
-        <!-- YouTube Ableton tutorial (visible embed) -->
-        <div style="flex:1;min-width:300px;max-width:720px;position:relative;">
-            <iframe id="yt-embed" width="100%" height="405"
-                src="https://www.youtube.com/embed/5r3JbVfVqUs"
-                title="Ableton Tutorial"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen></iframe>
+    <div class="showcase-grid" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));gap:18px;align-items:start;margin-top:12px;">
+        <!-- YouTube Video -->
+        <div style="position:relative;width:100%;padding-bottom:100%;height:0;overflow:hidden;border-radius:10px;">
+            <iframe width="100%" height="320" 
+                src="https://www.youtube.com/embed/u4ITfTqjP3k" 
+                title="14 December 2025" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" 
+                allowfullscreen
+                style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:10px;"></iframe>
 
             <!-- optional temporary badge (keeps visibility brief via JS) -->
             <div class="temp-badge" data-platform="YouTube" style="position:absolute;left:12px;top:12px;background:var(--accent);color:#071217;padding:6px 10px;border-radius:999px;font-weight:700;box-shadow:0 8px 24px rgba(0,0,0,0.6);display:none;">
@@ -480,11 +492,20 @@
             </div>
         </div>
 
-        <!-- SoundCloud embed (no links/text shown) -->
-       <iframe allowtransparency="true" scrolling="no" frameborder="no" src="https://w.soundcloud.com/icon/?url=http%3A%2F%2Fsoundcloud.com%2Ftolorisebeats&color=orange_white&size=32" style="width: 32px; height: 32px;"></iframe>
+        <!-- SoundCloud embed -->
+        <div style="position:relative;width:100%;height:280px;border-radius:10px;overflow:hidden;">
+            <iframe width="100%" height="100%" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/tolorisebeats/ghetto-cry-for-change&color=%23ffd97a&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true" style="border-radius:10px;position:absolute;top:0;left:0;"></iframe>
+        </div>
 
-            <!-- Spotify embed (no links/text shown) -->
-             
+        <!-- Facebook embed -->
+        <div style="position:relative;width:100%;height:280px;border-radius:10px;overflow:hidden;">
+            <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fweb.facebook.com%2Fphoto%2F%3Ffbid%3D776074658498609%26set%3Da.119701510802597&show_text=true&width=500" width="100%" height="100%" style="border:none;overflow:hidden;border-radius:10px;position:absolute;top:0;left:0;" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+        </div>
+
+        <!-- Instagram embed -->
+        <div style="position:relative;width:100%;height:280px;border-radius:10px;overflow:hidden;">
+            <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DPEdUgMDOFo/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style="background:#FFF;border:0;border-radius:3px;box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);margin:1px;max-width:100%;min-width:100%;padding:0;width:100%;height:100%;"><div style="padding:16px;"></div></blockquote>
+            <script async src="//www.instagram.com/embed.js"></script>
         </div>
     </div>
 </section>
@@ -522,7 +543,7 @@
         <div style="display:flex;gap:12px;align-items:center;">
             <!-- social icons (kept small and visible) -->
             <a href="https://instagram.com/YourHandle" target="_blank" rel="noopener" title="Instagram" style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;background:rgba(255,255,255,0.02);">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.2"/><circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="1.2"/><circle cx="18.2" cy="5.8" r="0.6" fill="currentColor"/></svg>
+                <img src="inta_qr.png" alt="Instagram QR Code" style="width:40px;height:40px;border-radius:8px;">
             </a>
             <a href="https://twitter.com/YourHandle" target="_blank" rel="noopener" title="Twitter" style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;background:rgba(255,255,255,0.02);">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M23 4.5c-.7.3-1.5.6-2.3.7.8-.5 1.4-1.3 1.7-2.3-.8.5-1.6.9-2.6 1.1C19.3 3.6 18.2 3 17 3c-2 0-3.6 1.6-3.6 3.6 0 .3 0 .6.1.9C10.4 7.2 7 5.6 4.6 3.2 4.1 4 3.9 4.9 3.9 5.8c0 1.3.7 2.4 1.7 3-.6 0-1.2-.2-1.7-.5v.1c0 1.8 1.3 3.3 3 3.6-.5.2-1 .2-1.6.1.5 1.6 2 2.7 3.7 2.7C8 18 6.5 18.6 4.9 18.6c-.3 0-.6 0-.9-.1 1.8 1.1 3.9 1.8 6.1 1.8 7.3 0 11.3-6 11.3-11.2v-.5c.8-.6 1.4-1.5 1.8-2.4z" stroke="currentColor" stroke-width="0.6" fill="none"/></svg>
@@ -532,6 +553,9 @@
             </a>
             <a href="https://soundcloud.com/tolorisebeats" target="_blank" rel="noopener" title="SoundCloud" style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;background:rgba(255,255,255,0.02);">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 13h1v3H3v-3zM5 12h1v4H5v-4zM7 10h1v6H7v-6zM9 9h1v7H9V9zM11 8h1v8h-1V8zM15 10c1.7 0 3 1 3 2.5 0 .6-.2 1.1-.5 1.6H12v-4h3z" fill="currentColor"/></svg>
+            </a>
+            <a href="https://www.threads.com/@tolorisebeats" target="_blank" rel="noopener" title="Threads" style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;background:rgba(255,255,255,0.02);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="1" fill="currentColor"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z" stroke="currentColor" stroke-width="0.8" fill="none"/><path d="M12 7v10M7 12h10" stroke="currentColor" stroke-width="1.2"/></svg>
             </a>
             <iframe allowtransparency="true" scrolling="no" frameborder="no" src="https://w.soundcloud.com/icon/?url=http%3A%2F%2Fsoundcloud.com%2Ftolorisebeats&color=orange_white&size=32" style="width: 32px; height: 32px;"></iframe>
         </div>
@@ -645,11 +669,16 @@
 
     function updatePlayButton(btn, isPlaying) {
         if (isPlaying) {
-            btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/></svg>';
+            btn.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/></svg>';
         } else {
-            btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+            btn.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
         }
     }
+
+    // Initialize rewind buttons with icons
+    document.querySelectorAll('.rewind-btn').forEach(btn => {
+        btn.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 5V1l-5 5 5 5v-4c3.31 0 6 2.69 6 6 0 2.38-1.39 4.44-3.41 5.42l1.42 1.41C19.54 15.24 21 12.81 21 10c0-4.42-3.58-8-8-8zm.01 14c-3.31 0-6-2.69-6-6 0-2.38 1.39-4.44 3.41-5.42L7.99 5.59C4.46 8.76 3 11.19 3 14c0 4.42 3.58 8 8 8v4l5-5-5-5v4z"/></svg>';
+    });
 
     function updateAllPlayButtons() {
         document.querySelectorAll('.play-btn').forEach(btn => {
@@ -699,4 +728,3 @@
 </script>
 </body>
 </html>
-

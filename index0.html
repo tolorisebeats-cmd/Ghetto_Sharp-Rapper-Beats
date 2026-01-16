@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ToloriseBeatz | Beats Production</title>
+<!-- SEO meta -->
+<meta name="description" content="ToloriseBeatz — producer of hard-hitting Trap, Boom Bap and Lo-fi beats. Buy beats, license tracks, and get custom production for rappers.">
+<meta name="keywords" content="trap beats, boom bap, lo-fi beats, buy beats, beat licensing, ToloriseBeatz">
+<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Oswald:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/wavesurfer.js"></script>
+<style>
+    :root{
+        --nav-height:72px;
+        --bg-dark:#071014;        /* page background (very dark) */
+        --panel:#0e1518;          /* card background (slightly lighter) */
+        --accent:#ffd97a;         /* warm highlight */
+        --text:#e9e6e3;           /* main text (light) */
+        --muted:#9aa1a8;          /* secondary text */
+        --glass: rgba(255,255,255,0.03);
+        --shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+        font-family: "Roboto", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        background:
+          radial-gradient(circle at 10% 10%, rgba(255,217,122,0.02), transparent 10%),
+          linear-gradient(180deg, var(--bg-dark) 0%, #071217 100%);
+        color:var(--text);
+        -webkit-font-smoothing:antialiased;
+        -moz-osx-font-smoothing:grayscale;
+        line-height:1.6;
+        padding-bottom:40px;
+    }
+
+    /* Header / hero */
+    header{
+        background-image:
+            linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+            url('03.png');
+        background-size:cover;
+        background-position:center;
+        background-blend-mode:overlay;
+        text-align:center;
+        padding: calc(var(--nav-height) + 36px) 20px 40px;
+        border-bottom: 1px solid rgba(255,255,255,0.02);
+    }
+
+    .hero{
+        width:10em;
+        height:10em;
+        object-fit:cover;
+        border-radius:50%;
+        display:block;
+        margin:0 auto 18px;
+        box-shadow: 0 12px 36px rgba(0,0,0,0.7), 0 2px 6px rgba(255,217,122,0.02) inset;
+        border:3px solid rgba(255,217,122,0.06);
+    }
+
+    header h1{
+        font-family: 'Lobster', 'Oswald', sans-serif;
+        font-size:3rem;
+        line-height:1;
+        margin-bottom:6px;
+        letter-spacing:0;
+        /* Gradient-filled text for a bright, stylish look */
+        background: linear-gradient(90deg, #fff 0%, var(--accent) 60%, #ffd97a 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        /* subtle glow / depth so the joined script stands out on dark background */
+        text-shadow:
+            0 6px 18px rgba(0,0,0,0.8),
+            0 1px 0 rgba(255,217,122,0.03);
+        display:inline-block;
+        padding:6px 14px;
+        border-radius:8px;
+    }
+    .seo-h2{font-family:'Oswald',sans-serif;color:rgba(255,217,122,0.92);font-size:1.05rem;margin-bottom:4px}
+    .seo-h3{color:var(--muted);font-size:0.95rem;margin-bottom:12px}
+
+    /* Sticky navbar */
+    nav{
+        position:fixed;
+        top:12px;
+        left:50%;
+        transform:translateX(-50%);
+        z-index:9999;
+        display:flex;
+        gap:18px;
+        align-items:center;
+        padding:10px 16px;
+        height:var(--nav-height);
+        border-radius:12px;
+        width:calc(100% - 48px);
+        max-width:1200px;
+        background: rgba(10,16,18,0.82);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(6px);
+        transition:transform .18s, box-shadow .18s;
+    }
+    nav a, .subscribe-btn{
+        color:var(--accent);
+        text-decoration:none;
+        font-weight:700;
+        padding:8px 12px;
+        border-radius:8px;
+        transition:all .18s;
+    }
+    .subscribe-btn{
+        background: linear-gradient(90deg, rgba(255,217,122,0.12), rgba(255,217,122,0.06));
+        color:var(--text);
+        box-shadow: 0 6px 18px rgba(255,217,122,0.04);
+    }
+    nav a:hover, .subscribe-btn:hover{ transform:translateY(-3px); opacity:0.98; }
+
+    /* Sections */
+    section{
+        padding:56px 20px;
+        max-width:1200px;
+        margin:0 auto;
+    }
+    section h2{ font-family:'Oswald',sans-serif; color:var(--accent); font-size:1.6rem; margin-bottom:12px }
+    section p{ color:var(--muted); max-width:900px; margin:0 auto 20px; font-size:1rem }
+
+    /* Beats grid — dark lo‑fi */
+    .beats{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        margin-top:26px;
+        padding:0 12px;
+        width:100%;
+        max-width:1200px;
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .beat-card{
+        display:flex;
+        flex-direction:column;
+        gap:12px;
+        align-items:stretch;
+        background: linear-gradient(180deg, var(--panel), rgba(12,18,20,0.95));
+        border-radius:14px;
+        padding:14px;
+        box-shadow: var(--shadow);
+        border:1px solid rgba(255,255,255,0.02);
+        transition: transform .18s, box-shadow .18s;
+        height:100%;
+    }
+    .beat-card:hover{
+        transform:translateY(-4px);
+        box-shadow: 0 22px 54px rgba(0,0,0,0.7);
+    }
+
+    .beat-card .top {
+        display:flex;
+        gap:12px;
+        align-items:center;
+    }
+    .beat-card img{
+        width:110px;
+        height:110px;
+        object-fit:cover;
+        border-radius:10px;
+        flex-shrink:0;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+        border:2px solid rgba(255,217,122,0.04);
+    }
+
+    .beat-content{ flex:1; min-width:0; display:flex; flex-direction:column; }
+    .beat-content h3{ margin:0 0 6px 0; font-size:1.05rem; color:var(--text) }
+    .beat-info{ color:var(--muted); font-size:0.95rem; margin-bottom:6px }
+
+    .beat-slogan{ font-size:0.85rem; color:rgba(255,217,122,0.9); margin-top:4px; font-style:italic; }
+
+    .waveform{ margin-top:6px; width:100%; height:44px; border-radius:6px; overflow:hidden; background:linear-gradient(90deg, rgba(255,255,255,0.01), rgba(0,0,0,0.02)); }
+
+    .player-controls{ display:flex; align-items:center; gap:10px; margin-top:10px }
+    .control-btn{
+        background: rgba(255,255,255,0.02);
+        border:none;
+        padding:8px;
+        width:42px;
+        height:42px;
+        border-radius:10px;
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        cursor:pointer;
+        box-shadow: 0 6px 16px rgba(0,0,0,0.6);
+        transition: transform .12s, box-shadow .12s, background .12s;
+    }
+    .control-btn:hover{
+        transform:translateY(-4px);
+        box-shadow: 0 14px 34px rgba(0,0,0,0.75);
+        background: rgba(255,217,122,0.05);
+    }
+
+    .control-label{ font-size:0.95rem; color:var(--muted); margin-left:8px; min-width:48px; text-align:left; }
+
+    /* filters */
+    #beat-filters{ display:flex; gap:10px; margin-top:12px; width:100%; max-width:1100px; margin-left:auto; margin-right:auto; padding:6px; }
+    .filter-btn{ flex:1; display:inline-flex; align-items:center; justify-content:center; padding:10px 12px; background: rgba(255,255,255,0.02); border-radius:10px; color:var(--accent); font-weight:700; border:1px solid rgba(255,255,255,0.02); cursor:pointer; transition:transform .12s, box-shadow .12s, background .12s; text-transform:uppercase; letter-spacing:0.6px; }
+    .filter-btn[aria-pressed="true"]{ background: linear-gradient(90deg, rgba(255,217,122,0.14), rgba(255,217,122,0.06)); color:#071217; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transform:none; }
+
+    /* purchase buttons */
+    .paypal-btn, .stripe-btn{ padding:8px 12px; border-radius:10px; font-weight:700; border:none; cursor:pointer; box-shadow: 0 6px 18px rgba(0,0,0,0.6); }
+    .paypal-btn{ background:linear-gradient(180deg,#ffd966,#ffc439); color:#111 }
+    .stripe-btn{ background:linear-gradient(90deg,#6c78ff,#4a57e6); color:#fff }
+
+    @media (max-width:640px){
+        .beat-card .top{ flex-direction:column; align-items:center; text-align:center }
+        .beat-content{ text-align:center }
+        .card-footer{ flex-direction:column; gap:8px; align-items:center }
+        .beat-actions{ margin-left:0; justify-content:center }
+    }
+
+    footer{ padding:40px 20px; color:var(--muted); text-align:center; background:transparent }
+
+    /* Showcase section */
+    #showcase{
+        padding:56px 20px;
+        max-width:1200px;
+        margin:0 auto;
+    }
+    #showcase h2{ font-family:'Oswald',sans-serif; color:var(--accent); font-size:1.6rem; margin-bottom:12px }
+    #showcase p{ color:var(--muted); max-width:900px; margin:0 auto 20px; font-size:1rem }
+
+    .showcase-grid{
+        display:flex;
+        gap:18px;
+        flex-wrap:wrap;
+        align-items:flex-start;
+        margin-top:12px;
+    }
+    .showcase-grid iframe{
+        border-radius:10px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <img class="hero" src="2.png" alt="ToloriseBeatz hero image — producer portrait / studio shot">
+    <h1>ToloriseBeatz</h1>
+    <h2 class="seo-h2">Professional Trap, Boom Bap & Lo‑fi Beats for Rappers</h2>
+    <h3 class="seo-h3">Beat Production, Licensing, Instrumentals & Custom Beats — ToloriseBeatz</h3>
+    <p>Ghetto Sharp Rapper on the Beat</p>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#beats">Beats</a>
+        <a href="#contact">Contact</a>
+        <!-- subscribe button added to nav -->
+        <a class="subscribe-btn" href="#contact">Subscribe</a>
+    </nav>
+</header>
+
+<section id="about">
+    <h2>About Me</h2>
+    <p>
+        I am ToloriseBeatz — an SA Durban producer working with local artists to deliver hard-hitting Trap, Boom Bap, Lo‑fi and Durban Drill instrumentals.
+        Offering beat licensing, custom production and collaborations for Durban & South African artists. Contact for placements, features and custom work.
+    </p>
+    <p style="color:var(--muted);margin-top:8px;font-size:0.95rem;">
+        Keywords: SA Durban producer, Durban beats, local artists, trap beats, lo-fi, kasi beats, Durban drill, beat licensing.
+    </p>
+</section>
+
+<section id="beats">
+    <h2>My Beats</h2>
+    <p>Browse beats by category. Use the filters to quickly find Trap, Lo‑fi, Kasi and Durban Drill beats.</p>
+
+    <!-- category filter -->
+    <div id="beat-filters" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;">
+        <button class="filter-btn subscribe-btn" data-filter="all" aria-pressed="true">All</button>
+        <button class="filter-btn" data-filter="trap">Trap</button>
+        <button class="filter-btn" data-filter="lofi">Lo‑fi</button>
+        <button class="filter-btn" data-filter="kasi">Kasi Beats</button>
+        <button class="filter-btn" data-filter="durban-drill">Durban Drill</button>
+    </div>
+
+    <div class="beats" id="beats-list" style="margin-top:18px;">
+        <!-- 6 beats (audio files located in the workspace folder: Beats/b1.mp3 .. Beats/b6.mp3) -->
+        <div class="beat-card" data-category="trap">
+            <div class="top">
+                <img src="01.png" alt="Street King Beat">
+                <div class="beat-content">
+                    <h3>Street King</h3>
+                    <div class="beat-slogan">Ghetto Sharp Rapper</div>
+                    <div class="beat-info"><span>Trap • 140 BPM • C Minor</span></div>
+                </div>
+            </div>
+
+            <div id="wave-b1" class="waveform"></div>
+            <audio id="audio-b1" src="Beats/b1.mp3"></audio>
+
+            <div class="card-footer">
+                <div class="player-controls">
+                    <button class="control-btn play-btn" data-wave="wave-b1" aria-label="Play / Pause"></button>
+                    <button class="control-btn rewind-btn" data-wave="wave-b1" aria-label="Rewind"></button>
+                    <span class="control-label">0:00</span>
+                </div>
+
+                <div class="beat-actions">
+                    <a class="paypal-btn" href="https://www.paypal.me/YourPayPalHandle/9.99" target="_blank" rel="noopener">Buy $9.99</a>
+                    <button class="stripe-btn" data-price="9.99">Stripe</button>
+                    <a class="license-btn" href="#">License</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- add slogan to each beat card -->
+        <div class="beat-card" data-category="kasi,lofi">
+            <div class="top">
+                <img src="03.png" alt="Hustler's Anthem Beat">
+                <div class="beat-content">
+                    <h3>Hustler's Anthem</h3>
+                    <div class="beat-slogan">Ghetto Sharp Rapper</div>
+                    <div class="beat-info"><span>Kasi / Lo‑fi • 95 BPM • E Minor</span></div>
+                </div>
+            </div>
+
+            <div id="wave-b2" class="waveform"></div>
+            <audio id="audio-b2" src="Beats/b2.mp3"></audio>
+
+            <div class="card-footer">
+                <div class="player-controls">
+                    <button class="control-btn play-btn" data-wave="wave-b2" aria-label="Play / Pause"></button>
+                    <button class="control-btn rewind-btn" data-wave="wave-b2" aria-label="Rewind"></button>
+                    <span class="control-label">0:00</span>
+                </div>
+
+                <div class="beat-actions">
+                    <a class="paypal-btn" href="https://www.paypal.me/YourPayPalHandle/7.99" target="_blank" rel="noopener">Buy $7.99</a>
+                    <button class="stripe-btn" data-price="7.99">Stripe</button>
+                    <a class="license-btn" href="#">License</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="beat-card" data-category="durban-drill">
+            <div class="top">
+                <img src="02.png" alt="Ghetto Dreams Beat">
+                <div class="beat-content">
+                    <h3>Ghetto Dreams</h3>
+                    <div class="beat-slogan">Ghetto Sharp Rapper</div>
+                    <div class="beat-info"><span>Durban Drill • 80 BPM • A Minor</span></div>
+                </div>
+            </div>
+
+            <div id="wave-b3" class="waveform"></div>
+            <audio id="audio-b3" src="Beats/b3.mp3"></audio>
+
+            <div class="card-footer">
+                <div class="player-controls">
+                    <button class="control-btn play-btn" data-wave="wave-b3" aria-label="Play / Pause"></button>
+                    <button class="control-btn rewind-btn" data-wave="wave-b3" aria-label="Rewind"></button>
+                    <span class="control-label">0:00</span>
+                </div>
+
+                <div class="beat-actions">
+                    <a class="paypal-btn" href="https://www.paypal.me/YourPayPalHandle/5.99" target="_blank" rel="noopener">Buy $5.99</a>
+                    <button class="stripe-btn" data-price="5.99">Stripe</button>
+                    <a class="license-btn" href="#">License</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="beat-card" data-category="lofi">
+            <div class="top">
+                <img src="04.png" alt="City Nights Beat">
+                <div class="beat-content">
+                    <h3>City Nights</h3>
+                    <div class="beat-slogan">Ghetto Sharp Rapper</div>
+                    <div class="beat-info"><span>Lo‑fi • 72 BPM • F Major</span></div>
+                </div>
+            </div>
+
+            <div id="wave-b4" class="waveform"></div>
+            <audio id="audio-b4" src="Beats/B4.mp3"></audio>
+
+            <div class="card-footer">
+                <div class="player-controls">
+                    <button class="control-btn play-btn" data-wave="wave-b4" aria-label="Play / Pause"></button>
+                    <button class="control-btn rewind-btn" data-wave="wave-b4" aria-label="Rewind"></button>
+                    <span class="control-label">0:00</span>
+                </div>
+
+                <div class="beat-actions">
+                    <a class="paypal-btn" href="https://www.paypal.me/YourPayPalHandle/6.99" target="_blank" rel="noopener">Buy $6.99</a>
+                    <button class="stripe-btn" data-price="6.99">Stripe</button>
+                    <a class="license-btn" href="#">License</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="beat-card" data-category="kasi">
+            <div class="top">
+                <img src="05.png" alt="Kasi Bounce Beat">
+                <div class="beat-content">
+                    <h3>Kasi Bounce</h3>
+                    <div class="beat-slogan">Ghetto Sharp Rapper</div>
+                    <div class="beat-info"><span>Kasi • 100 BPM • G Minor</span></div>
+                </div>
+            </div>
+
+            <div id="wave-b5" class="waveform"></div>
+            <audio id="audio-b5" src="Beats/b5.mp3"></audio>
+
+            <div class="card-footer">
+                <div class="player-controls">
+                    <button class="control-btn play-btn" data-wave="wave-b5" aria-label="Play / Pause"></button>
+                    <button class="control-btn rewind-btn" data-wave="wave-b5" aria-label="Rewind"></button>
+                    <span class="control-label">0:00</span>
+                </div>
+
+                <div class="beat-actions">
+                    <a class="paypal-btn" href="https://www.paypal.me/YourPayPalHandle/8.99" target="_blank" rel="noopener">Buy $8.99</a>
+                    <button class="stripe-btn" data-price="8.99">Stripe</button>
+                    <a class="license-btn" href="#">License</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="beat-card" data-category="durban-drill,trap">
+            <div class="top">
+                <img src="06.png" alt="Drill Block Beat">
+                <div class="beat-content">
+                    <h3>Drill Block</h3>
+                    <div class="beat-slogan">Ghetto Sharp Rapper</div>
+                    <div class="beat-info"><span>Durban Drill / Trap • 150 BPM • D Minor</span></div>
+                </div>
+            </div>
+
+            <div id="wave-b6" class="waveform"></div>
+            <audio id="audio-b6" src="Beats/b6.mp3"></audio>
+
+            <div class="card-footer">
+                <div class="player-controls">
+                    <button class="control-btn play-btn" data-wave="wave-b6" aria-label="Play / Pause"></button>
+                    <button class="control-btn rewind-btn" data-wave="wave-b6" aria-label="Rewind"></button>
+                    <span class="control-label">0:00</span>
+                </div>
+
+                <div class="beat-actions">
+                    <a class="paypal-btn" href="https://www.paypal.me/YourPayPalHandle/10.99" target="_blank" rel="noopener">Buy $10.99</a>
+                    <button class="stripe-btn" data-price="10.99">Stripe</button>
+                    <a class="license-btn" href="#">License</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- add a Showcase section with YouTube, SoundCloud and Spotify embeds -->
+<section id="showcase">
+    <h2>Showcase</h2>
+    <p style="color:var(--muted);max-width:900px;margin:0 auto 12px;font-size:1rem;">
+        Watch an Ableton tutorial and listen — embeds only, no links or extra text displayed here.
+    </p>
+
+    <div class="showcase-grid" style="display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start;margin-top:12px;">
+        <!-- YouTube Ableton tutorial (visible embed) -->
+        <div style="flex:1;min-width:300px;max-width:720px;position:relative;">
+            <iframe id="yt-embed" width="100%" height="405"
+                src="https://www.youtube.com/embed/5r3JbVfVqUs"
+                title="Ableton Tutorial"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+
+            <!-- optional temporary badge (keeps visibility brief via JS) -->
+            <div class="temp-badge" data-platform="YouTube" style="position:absolute;left:12px;top:12px;background:var(--accent);color:#071217;padding:6px 10px;border-radius:999px;font-weight:700;box-shadow:0 8px 24px rgba(0,0,0,0.6);display:none;">
+                YouTube
+            </div>
+        </div>
+
+        <!-- SoundCloud embed (no links/text shown) -->
+       <iframe allowtransparency="true" scrolling="no" frameborder="no" src="https://w.soundcloud.com/icon/?url=http%3A%2F%2Fsoundcloud.com%2Ftolorisebeats&color=orange_white&size=32" style="width: 32px; height: 32px;"></iframe>
+
+            <!-- Spotify embed (no links/text shown) -->
+             
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <h2>Contact & Booking</h2>
+    <p>Working with local artists across Durban & the SA scene. For licensing, custom beats or collaborations contact me:</p>
+
+    <div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap;margin-top:18px;">
+        <div style="min-width:260px;max-width:420px;">
+            <h3 style="margin:0 0 8px 0;color:var(--accent)">Contact Info</h3>
+            <p style="color:var(--muted);margin:0 0 6px 0"><strong>Email:</strong> <a href="mailto:info@tolorisebeatz.com" style="color:#ffd98a">info@tolorisebeatz.com</a></p>
+            <p style="color:var(--muted);margin:0 0 6px 0"><strong>Phone / WhatsApp:</strong> <a href="tel:+27830000000" style="color:#ffd98a">+27 83 000 0000</a></p>
+            <p style="color:var(--muted);margin:0 0 6px 0"><strong>Location:</strong> Durban, South Africa</p>
+            <p style="color:var(--muted);margin-top:8px;font-size:0.95rem">I produce Trap, Lo‑fi, Kasi beats and Durban Drill for local artists and labels. Available for remote collaborations worldwide.</p>
+        </div>
+
+        <form style="flex:1;min-width:280px;max-width:700px;display:flex;flex-direction:column;gap:10px;">
+            <input type="text" name="name" placeholder="Your Name" required style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:#fff">
+            <input type="email" name="email" placeholder="Your Email" required style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:#fff">
+            <input type="text" name="subject" placeholder="Subject" style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:#fff">
+            <textarea name="message" rows="5" placeholder="Message" required style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:#fff"></textarea>
+            <button type="submit" style="padding:10px;border-radius:10px;border:none;background:linear-gradient(90deg,#f7c948,#ffd685);color:#000;font-weight:700;cursor:pointer">Send Message</button>
+        </form>
+    </div>
+</section>
+
+<footer>
+    <div style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between;padding:24px 12px;border-top:1px solid rgba(255,255,255,0.03);">
+        <div style="color:var(--muted)">
+            &copy; 2026 ToloriseBeatz • Durban, SA<br>
+            <small>Licensing & custom beats — email: <a href="mailto:info@tolorisebeatz.com" style="color:var(--accent)">info@tolorisebeatz.com</a></small>
+        </div>
+
+        <div style="display:flex;gap:12px;align-items:center;">
+            <!-- social icons (kept small and visible) -->
+            <a href="https://instagram.com/YourHandle" target="_blank" rel="noopener" title="Instagram" style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;background:rgba(255,255,255,0.02);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.2"/><circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="1.2"/><circle cx="18.2" cy="5.8" r="0.6" fill="currentColor"/></svg>
+            </a>
+            <a href="https://twitter.com/YourHandle" target="_blank" rel="noopener" title="Twitter" style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;background:rgba(255,255,255,0.02);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M23 4.5c-.7.3-1.5.6-2.3.7.8-.5 1.4-1.3 1.7-2.3-.8.5-1.6.9-2.6 1.1C19.3 3.6 18.2 3 17 3c-2 0-3.6 1.6-3.6 3.6 0 .3 0 .6.1.9C10.4 7.2 7 5.6 4.6 3.2 4.1 4 3.9 4.9 3.9 5.8c0 1.3.7 2.4 1.7 3-.6 0-1.2-.2-1.7-.5v.1c0 1.8 1.3 3.3 3 3.6-.5.2-1 .2-1.6.1.5 1.6 2 2.7 3.7 2.7C8 18 6.5 18.6 4.9 18.6c-.3 0-.6 0-.9-.1 1.8 1.1 3.9 1.8 6.1 1.8 7.3 0 11.3-6 11.3-11.2v-.5c.8-.6 1.4-1.5 1.8-2.4z" stroke="currentColor" stroke-width="0.6" fill="none"/></svg>
+            </a>
+            <a href="https://youtu.be/YourChannel" target="_blank" rel="noopener" title="YouTube" style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;background:rgba(255,255,255,0.02);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="12" rx="3" stroke="currentColor" stroke-width="1.2"/><polygon points="10,9 16,12 10,15" fill="currentColor"/></svg>
+            </a>
+            <a href="https://soundcloud.com/tolorisebeats" target="_blank" rel="noopener" title="SoundCloud" style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;background:rgba(255,255,255,0.02);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 13h1v3H3v-3zM5 12h1v4H5v-4zM7 10h1v6H7v-6zM9 9h1v7H9V9zM11 8h1v8h-1V8zM15 10c1.7 0 3 1 3 2.5 0 .6-.2 1.1-.5 1.6H12v-4h3z" fill="currentColor"/></svg>
+            </a>
+            <iframe allowtransparency="true" scrolling="no" frameborder="no" src="https://w.soundcloud.com/icon/?url=http%3A%2F%2Fsoundcloud.com%2Ftolorisebeats&color=orange_white&size=32" style="width: 32px; height: 32px;"></iframe>
+        </div>
+    </div>
+
+    <!-- brilliant thank you row -->
+    <div style="max-width:1100px;margin:18px auto 0 auto;padding:18px 12px;text-align:center;color:var(--text);">
+        <div style="background:linear-gradient(90deg, rgba(255,217,122,0.06), rgba(255,217,122,0.03));padding:14px;border-radius:12px;box-shadow:0 12px 36px rgba(0,0,0,0.6);display:inline-block;">
+            <strong style="font-size:1.05rem;display:block;margin-bottom:6px;">Thanks for listening — much love <span style="color:#ff6b81">❤️</span></strong>
+            <div style="color:var(--muted);font-size:0.95rem;">Support the channel by following on YouTube, SoundCloud and Spotify.</div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // WaveSurfer instances for each beat
+    const waveInstances = {};
+
+    // Initialize WaveSurfer for each beat
+    function initWaveform(beatId, audioId, waveId) {
+        const container = document.getElementById(waveId);
+        const audio = document.getElementById(audioId);
+        
+        if (!container || !audio) return;
+
+        const wavesurfer = WaveSurfer.create({
+            container: container,
+            waveColor: 'rgba(255, 217, 122, 0.3)',
+            progressColor: 'rgba(255, 217, 122, 0.8)',
+            cursorColor: 'rgba(255, 217, 122, 0.9)',
+            height: 44,
+            barWidth: 3,
+            barRadius: 2,
+            responsive: true,
+            hideScrollbar: true
+        });
+
+        wavesurfer.load(audio.src);
+        waveInstances[waveId] = { wavesurfer, audio, waveId, beatId };
+    }
+
+    // Initialize all waveforms on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        for (let i = 1; i <= 6; i++) {
+            initWaveform(`beat-${i}`, `audio-b${i}`, `wave-b${i}`);
+        }
+
+        // Play/Pause button functionality
+        document.querySelectorAll('.play-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const waveId = 'wave-' + this.getAttribute('data-wave').replace('wave-', '');
+                const instance = waveInstances[waveId];
+                if (instance) {
+                    instance.wavesurfer.playPause();
+                    updatePlayButton(this, instance.wavesurfer.isPlaying());
+                }
+            });
+        });
+
+        // Rewind button functionality
+        document.querySelectorAll('.rewind-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const waveId = 'wave-' + this.getAttribute('data-wave').replace('wave-', '');
+                const instance = waveInstances[waveId];
+                if (instance) {
+                    instance.wavesurfer.seekTo(0);
+                }
+            });
+        });
+
+        // Update play button icon
+        Object.values(waveInstances).forEach(instance => {
+            instance.wavesurfer.on('play', function() {
+                updateAllPlayButtons();
+            });
+            instance.wavesurfer.on('pause', function() {
+                updateAllPlayButtons();
+            });
+            instance.wavesurfer.on('timeupdate', function(time) {
+                updateTimeLabel(instance.waveId, time);
+            });
+        });
+
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const filter = this.getAttribute('data-filter');
+                
+                // Update button states
+                document.querySelectorAll('.filter-btn').forEach(b => {
+                    b.setAttribute('aria-pressed', 'false');
+                    b.style.background = 'rgba(255,255,255,0.02)';
+                    b.style.color = 'var(--accent)';
+                });
+                this.setAttribute('aria-pressed', 'true');
+                this.style.background = 'linear-gradient(90deg, rgba(255,217,122,0.14), rgba(255,217,122,0.06))';
+                this.style.color = '#071217';
+
+                // Filter beats
+                document.querySelectorAll('.beat-card').forEach(card => {
+                    if (filter === 'all') {
+                        card.style.display = 'flex';
+                    } else {
+                        const categories = card.getAttribute('data-category').split(',');
+                        card.style.display = categories.includes(filter) ? 'flex' : 'none';
+                    }
+                });
+            });
+        });
+    });
+
+    function updatePlayButton(btn, isPlaying) {
+        if (isPlaying) {
+            btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/></svg>';
+        } else {
+            btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+        }
+    }
+
+    function updateAllPlayButtons() {
+        document.querySelectorAll('.play-btn').forEach(btn => {
+            const waveId = 'wave-' + btn.getAttribute('data-wave').replace('wave-', '');
+            const instance = waveInstances[waveId];
+            if (instance) {
+                updatePlayButton(btn, instance.wavesurfer.isPlaying());
+            }
+        });
+    }
+
+    function updateTimeLabel(waveId, time) {
+        const card = document.querySelector(`[id="${waveId}"]`)?.closest('.beat-card');
+        if (card) {
+            const label = card.querySelector('.control-label');
+            if (label) {
+                const minutes = Math.floor(time / 60);
+                const seconds = Math.floor(time % 60);
+                label.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+            }
+        }
+    }
+
+    // temporary badges: show briefly on page load, then hide
+    (function showTempBadges() {
+        const badges = document.querySelectorAll('.temp-badge');
+        if (!badges.length) return;
+        badges.forEach(b => {
+            b.style.display = 'inline-flex';
+            b.style.opacity = '0';
+            b.style.transform = 'translateY(-6px)';
+            requestAnimationFrame(() => {
+                b.style.transition = 'opacity .45s, transform .45s';
+                b.style.opacity = '1';
+                b.style.transform = 'translateY(0)';
+            });
+        });
+        // hide after 3.2s
+        setTimeout(() => {
+            badges.forEach(b => {
+                b.style.opacity = '0';
+                b.style.transform = 'translateY(-6px)';
+                setTimeout(() => b.style.display = 'none', 450);
+            });
+        }, 3200);
+    })();
+</script>
+</body>
+</html>
